@@ -8,7 +8,8 @@ import { Directive, input } from '@angular/core';
   },
 })
 export class SafeLinkdirective {
-  queryParam = input('myApp');
+  //Asi se llama fuera (lo del alias)
+  queryParam = input('myApp', { alias: 'appSafeLink' });
   constructor() {
     console.info('Estoy funcionando');
   }
