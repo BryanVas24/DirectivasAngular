@@ -1,4 +1,4 @@
-import { Directive } from '@angular/core';
+import { Directive, input } from '@angular/core';
 
 @Directive({
   selector: 'a[appSafeLink]',
@@ -8,6 +8,7 @@ import { Directive } from '@angular/core';
   },
 })
 export class SafeLinkdirective {
+  queryParam = input('myApp');
   constructor() {
     console.info('Estoy funcionando');
   }
@@ -15,6 +16,11 @@ export class SafeLinkdirective {
     const leavePage = window.confirm('¿Quieres abandonar la página?');
 
     if (leavePage) {
+      //Esto usa type casting para decirle a ts que
+      const addres = (event.target as HTMLAnchorElement).href;
+      //Esto es para agregar a la url de un a que vienen de tu pagina
+      (event.target as HTMLAnchorElement).href =
+        addres + '?from=' + this.queryParam();
       return;
     }
     event?.preventDefault();
