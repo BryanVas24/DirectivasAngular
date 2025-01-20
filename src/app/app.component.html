@@ -4,4 +4,12 @@
   <hr />
 
   <app-auth />
+
+  <!-- Esta es la forma que se hace sin directivas, y solo se puede usar apartir de la version 17
+  @if(isAdmin()){
+  <p>Soy un párrafo para administradores</p>
+  }-->
+
+  <!--Estaes una directiva estructural-->
+  <p *ngIf="isAdmin()">Soy un parrafo con una directiva estrucural</p>
 </main>
