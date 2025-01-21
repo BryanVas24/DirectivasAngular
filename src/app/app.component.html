@@ -14,7 +14,14 @@
   <!--<p *ngIf="isAdmin()">Soy un parrafo con una directiva estrucural</p>-->
 
   <!--Estaes una directiva hecha a mano-->
-  <ng-template appAuth="admin">
-    <p>Solo los admins ven esto</p>
-  </ng-template>
+
+  <p *appAuth="'admin'" class="protected-content admin">
+    Solo los admins ven esto
+  </p>
+  <p *appAuth="'user'" class="protected-content unauthenticated">
+    Los usuarios ven esto
+  </p>
+  <p *appAuth="'guest'" class="protected-content authenticated">
+    Los invitados ven esto
+  </p>
 </main>
