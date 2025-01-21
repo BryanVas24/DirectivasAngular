@@ -14,5 +14,7 @@
   <!--<p *ngIf="isAdmin()">Soy un parrafo con una directiva estrucural</p>-->
 
   <!--Estaes una directiva hecha a mano-->
-  <p appAuth="admin">Solo los admins ven esto</p>
+  <ng-template appAuth="admin">
+    <p>Solo los admins ven esto</p>
+  </ng-template>
 </main>
