@@ -1,4 +1,4 @@
-import { Directive, input } from '@angular/core';
+import { Directive, ElementRef, inject, input } from '@angular/core';
 
 @Directive({
   selector: 'a[appSafeLink]',
@@ -8,6 +8,7 @@ import { Directive, input } from '@angular/core';
   },
 })
 export class SafeLinkdirective {
+  private hostElementref = inject<ElementRef<HTMLAnchorElement>>(ElementRef);
   //Asi se llama fuera (lo del alias)
   queryParam = input('myApp', { alias: 'appSafeLink' });
   constructor() {
@@ -18,9 +19,9 @@ export class SafeLinkdirective {
 
     if (leavePage) {
       //Esto usa type casting para decirle a ts que
-      const addres = (event.target as HTMLAnchorElement).href;
+      const addres = this.hostElementref.nativeElement.href;
       //Esto es para agregar a la url de un a que vienen de tu pagina
-      (event.target as HTMLAnchorElement).href =
+      this.hostElementref.nativeElement.href =
         addres + '?from=' + this.queryParam();
       return;
     }
